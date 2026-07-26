@@ -201,6 +201,10 @@ func _main() int {
 			commit)
 		return OK
 	}
+	if err != nil && flags.WroteHelp(err) {
+		fmt.Fprintf(os.Stdout, "%v\n", err)
+		return OK
+	}
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "%v\n", err)
 		return UNKNOWN
