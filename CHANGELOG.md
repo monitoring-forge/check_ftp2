@@ -1,5 +1,10 @@
 # Changelog
 
+## [v0.0.11](https://github.com/monitoring-forge/check_ftp2/compare/v0.0.10...v0.0.11) - 2026-07-27
+
+- fix Help exit code by @kazeburo in https://github.com/monitoring-forge/check_ftp2/pull/28
+- use flags.PrintErrors, fix Makefile and add pr-agent by @kazeburo in https://github.com/monitoring-forge/check_ftp2/pull/30
+
 ## [v0.0.10](https://github.com/monitoring-forge/check_ftp2/compare/v0.0.9...v0.0.10) - 2026-07-24
 
 - ci: bump the dependencies group with 3 updates by @dependabot[bot] in https://github.com/monitoring-forge/check_ftp2/pull/25
