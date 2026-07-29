@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.0.12](https://github.com/monitoring-forge/check_ftp2/compare/v0.0.11...v0.0.12) - 2026-07-29
+
+- refactor flags again by @kazeburo in https://github.com/monitoring-forge/check_ftp2/pull/31
+
 ## [v0.0.11](https://github.com/monitoring-forge/check_ftp2/compare/v0.0.10...v0.0.11) - 2026-07-27
 
 - fix Help exit code by @kazeburo in https://github.com/monitoring-forge/check_ftp2/pull/28
