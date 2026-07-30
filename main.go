@@ -6,6 +6,7 @@ import (
 	"crypto/tls"
 	"errors"
 	"fmt"
+	"log"
 	"net"
 	"os"
 	"path/filepath"
@@ -140,7 +141,15 @@ func (o *Opt) doConnect() (string, error) {
 			ch <- ftpConnectResult{"", e}
 			return
 		}
-		defer c.Quit()
+		defer func() {
+			if c == nil {
+				return
+			}
+			quitErr := c.Quit()
+			if quitErr != nil {
+				log.Printf("Error quitting FTP connection: %v", quitErr) // Log the error but don't fail
+			}
+		}()
 		ch <- ftpConnectResult{b.String(), nil}
 	}()
 
