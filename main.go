@@ -142,6 +142,9 @@ func (o *Opt) doConnect() (string, error) {
 			return
 		}
 		defer func() {
+			if c == nil {
+				return
+			}
 			quitErr := c.Quit()
 			if quitErr != nil {
 				log.Printf("Error quitting FTP connection: %v", quitErr) // Log the error but don't fail
