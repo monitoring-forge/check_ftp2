@@ -1,5 +1,12 @@
 # Changelog
 
+## [v0.0.13](https://github.com/monitoring-forge/check_ftp2/compare/v0.0.12...v0.0.13) - 2026-08-08
+
+- add lint and fix some issue by @kazeburo in https://github.com/monitoring-forge/check_ftp2/pull/33
+- Sync files with `monitoring-forge/github-common` by @monitoring-forge-files-sync-action[bot] in https://github.com/monitoring-forge/check_ftp2/pull/35
+- go: bump github.com/jlaffaye/ftp from 0.2.1 to 0.2.2 in the dependencies group by @dependabot[bot] in https://github.com/monitoring-forge/check_ftp2/pull/37
+- Sync files with `monitoring-forge/github-common` by @monitoring-forge-files-sync-action[bot] in https://github.com/monitoring-forge/check_ftp2/pull/36
+
 ## [v0.0.12](https://github.com/monitoring-forge/check_ftp2/compare/v0.0.11...v0.0.12) - 2026-07-29
 
 - refactor flags again by @kazeburo in https://github.com/monitoring-forge/check_ftp2/pull/31
