@@ -4,29 +4,17 @@ import (
 	"bytes"
 	"context"
 	"crypto/tls"
-	"errors"
 	"fmt"
-	"log"
 	"net"
 	"os"
-	"path/filepath"
-	"runtime"
 	"strings"
 	"time"
 
-	"github.com/jessevdk/go-flags"
 	"github.com/jlaffaye/ftp"
+	"github.com/monitoring-forge/flagrun"
 )
 
 var version string
-var commit string
-
-const (
-	OK = iota
-	WARNING
-	CRITICAL
-	UNKNOWN
-)
 
 const replacement = "\\n"
 
@@ -103,19 +91,6 @@ func (o *Opt) dialOptions() []ftp.DialOption {
 	return options
 }
 
-type ftpError struct {
-	msg  string
-	code int
-}
-
-func (e *ftpError) Error() string {
-	return e.msg
-}
-
-func (e *ftpError) Code() int {
-	return e.code
-}
-
 type ftpConnectResult struct {
 	out string
 	err error
@@ -147,7 +122,7 @@ func (o *Opt) doConnect() (string, error) {
 			}
 			quitErr := c.Quit()
 			if quitErr != nil {
-				log.Printf("Error quitting FTP connection: %v", quitErr) // Log the error but don't fail
+				fmt.Fprintf(os.Stderr, "error in quitting FTP connection: %v\n", quitErr) // Log the error but don't fail
 			}
 		}()
 		ch <- ftpConnectResult{b.String(), nil}
@@ -168,11 +143,7 @@ func (o *Opt) doConnect() (string, error) {
 	res.out = replaceReplacer(res.out)
 
 	if res.err != nil {
-		return "", &ftpError{
-			msg:  fmt.Sprintf("FTP CRITICAL: %v on %s port %d [%s]", res.err, o.Hostname, o.Port, res.out),
-			code: CRITICAL,
-		}
-
+		return "", fmt.Errorf("connection failed: %v on %s port %d [%s]", res.err, o.Hostname, o.Port, res.out)
 	}
 
 	okMsg := fmt.Sprintf(`FTP OK - %.3f second response time on %s port %d [%s]|time=%fs;;;0.000000;%f`, duration.Seconds(), o.Hostname, o.Port, res.out, duration.Seconds(), o.Timeout.Seconds())
@@ -190,53 +161,21 @@ func (o *Opt) verifyOptions() error {
 	return nil
 }
 
-func main() {
-	os.Exit(_main())
-}
-
-func _main() int {
-	opt := &Opt{}
-	psr := flags.NewParser(opt, flags.HelpFlag|flags.PassDoubleDash)
-	_, err := psr.Parse()
-	if opt.Version {
-		if commit == "" {
-			commit = "dev"
-		}
-		fmt.Printf(
-			"%s-%s\n%s/%s, %s, %s\n",
-			filepath.Base(os.Args[0]),
-			version,
-			runtime.GOOS,
-			runtime.GOARCH,
-			runtime.Version(),
-			commit)
-		return OK
-	} else if flags.WroteHelp(err) {
-		fmt.Fprintf(os.Stdout, "%v\n", err)
-		return OK
-	} else if err != nil {
-		fmt.Fprintf(os.Stderr, "%v\n", err)
-		return UNKNOWN
-	}
-
+func (opt *Opt) Run(_ []string) (error, int) {
 	if err := opt.verifyOptions(); err != nil {
-		fmt.Fprintf(os.Stderr, "FTP UNKNOWN: %v\n", err)
-		return UNKNOWN
+		return fmt.Errorf("FTP UNKNOWN: %v", err), flagrun.UNKNOWN
 	}
 
 	msg, err := opt.doConnect()
 	if err != nil {
-		var ftpErr *ftpError
-		switch {
-		case errors.As(err, &ftpErr):
-			fmt.Println(ftpErr.Error())
-			return ftpErr.Code()
-		default:
-			fmt.Printf("FTP connection failed with unexpected error: %v\n", err)
-			return CRITICAL
-		}
+		fmt.Printf("FTP CRITICAL: %v\n", err)
+		return nil, flagrun.CRITICAL
 	}
 
 	fmt.Println(msg)
-	return OK
+	return nil, flagrun.OK
+}
+
+func main() {
+	os.Exit(flagrun.Go(&Opt{}, flagrun.Version(version)))
 }
