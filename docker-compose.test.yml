@@ -1,0 +1,39 @@
+services:
+  ftp-plain:
+    image: delfer/alpine-ftp-server
+    ports:
+      - "2121:21"
+      - "30000-30009:30000-30009"
+    environment:
+      FTP_USER: test
+      FTP_PASS: test
+      FTP_HOME: /home/test
+      PASV_MIN_PORT: 30000
+      PASV_MAX_PORT: 30009
+    healthcheck:
+      test: ["CMD", "sh", "-c", "nc -z localhost 21"]
+      interval: 2s
+      timeout: 3s
+      retries: 10
+
+  ftp-tls:
+    image: crazymax/pure-ftpd
+    ports:
+      - "2122:2100"
+      - "30010-30019:30010-30019"
+    environment:
+      TZ: UTC
+      PASSIVE_PORT_RANGE: "30010:30019"
+    volumes:
+      - ./test-certs:/data:rw
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "sh",
+          "-c",
+          "test -f /data/pureftpd.pem && nc -z localhost 2100",
+        ]
+      interval: 2s
+      timeout: 3s
+      retries: 20
