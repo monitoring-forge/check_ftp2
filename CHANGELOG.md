@@ -1,5 +1,17 @@
 # Changelog
 
+## [v0.0.13](https://github.com/monitoring-forge/check_ftp2/compare/v0.0.12...v0.0.13) - 2026-08-21
+
+- add lint and fix some issue by @kazeburo in https://github.com/monitoring-forge/check_ftp2/pull/33
+- Sync files with `monitoring-forge/github-common` by @monitoring-forge-files-sync-action[bot] in https://github.com/monitoring-forge/check_ftp2/pull/35
+- go: bump github.com/jlaffaye/ftp from 0.2.1 to 0.2.2 in the dependencies group by @dependabot[bot] in https://github.com/monitoring-forge/check_ftp2/pull/37
+- Sync files with `monitoring-forge/github-common` by @monitoring-forge-files-sync-action[bot] in https://github.com/monitoring-forge/check_ftp2/pull/36
+- Sync files with `monitoring-forge/github-common` by @monitoring-forge-files-sync-action[bot] in https://github.com/monitoring-forge/check_ftp2/pull/38
+- ci: bump the-pr-agent/pr-agent from 0.41.1 to 0.42.0 in the dependencies group across 1 directory by @dependabot[bot] in https://github.com/monitoring-forge/check_ftp2/pull/39
+- feat: add self-signed certificate generation and FTP server tests by @kazeburo in https://github.com/monitoring-forge/check_ftp2/pull/40
+- integration test using docker compose by @kazeburo in https://github.com/monitoring-forge/check_ftp2/pull/41
+- improve README.md by @kazeburo in https://github.com/monitoring-forge/check_ftp2/pull/42
+
 ## [v0.0.12](https://github.com/monitoring-forge/check_ftp2/compare/v0.0.11...v0.0.12) - 2026-07-29
 
 - refactor flags again by @kazeburo in https://github.com/monitoring-forge/check_ftp2/pull/31
