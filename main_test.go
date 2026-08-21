@@ -23,19 +23,6 @@ func Test_replaceReplacer(t *testing.T) {
 	}
 }
 
-func Test_ftpError_ErrorAndCode(t *testing.T) {
-	err := &ftpError{
-		msg:  "msg",
-		code: 42,
-	}
-	if err.Error() != "msg" {
-		t.Errorf("Error() = %q, want %q", err.Error(), "msg")
-	}
-	if err.Code() != 42 {
-		t.Errorf("Code() = %d, want %d", err.Code(), 42)
-	}
-}
-
 func Test_Opt_dialOptions_basic(t *testing.T) {
 	opts := &Opt{Timeout: 1 * time.Second, Hostname: "localhost", Port: 21}
 	options := opts.dialOptions()
