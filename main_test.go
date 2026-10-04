@@ -83,7 +83,7 @@ func Test_opt_verifyOptions(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			err := tt.opt.verifyOptions()
+			err := tt.opt.verifyOptions([]string{})
 			if (err != nil) != tt.wantErr {
 				t.Errorf("verifyOptions() error = %v, wantErr %v", err, tt.wantErr)
 			}

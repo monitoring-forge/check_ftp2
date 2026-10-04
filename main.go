@@ -63,7 +63,6 @@ func (o *Opt) dialOptions() []ftp.DialOption {
 		dialer := &net.Dialer{
 			Timeout:   o.Timeout,
 			KeepAlive: 30 * time.Second,
-			DualStack: true,
 		}
 		tcpMode := "tcp"
 		if o.TCP4 {
@@ -143,7 +142,7 @@ func (o *Opt) doConnect() (string, error) {
 	res.out = replaceReplacer(res.out)
 
 	if res.err != nil {
-		return "", fmt.Errorf("connection failed: %v on %s port %d [%s]", res.err, o.Hostname, o.Port, res.out)
+		return "", fmt.Errorf("connection failed: %w on %s port %d [%s]", res.err, o.Hostname, o.Port, res.out)
 	}
 
 	okMsg := fmt.Sprintf(`FTP OK - %.3f second response time on %s port %d [%s]|time=%fs;;;0.000000;%f`, duration.Seconds(), o.Hostname, o.Port, res.out, duration.Seconds(), o.Timeout.Seconds())
@@ -151,7 +150,7 @@ func (o *Opt) doConnect() (string, error) {
 	return okMsg, nil
 }
 
-func (o *Opt) verifyOptions() error {
+func (o *Opt) verifyOptions(_ []string) error {
 	if o.VerifySSL && o.SNI == "" {
 		return fmt.Errorf("verify-ssl is specified but sni is not specified")
 	}
@@ -161,11 +160,7 @@ func (o *Opt) verifyOptions() error {
 	return nil
 }
 
-func (opt *Opt) Run(_ []string) (error, int) {
-	if err := opt.verifyOptions(); err != nil {
-		return fmt.Errorf("FTP UNKNOWN: %v", err), flagrun.UNKNOWN
-	}
-
+func (opt *Opt) Run(_ []string) (any, int) {
 	msg, err := opt.doConnect()
 	if err != nil {
 		fmt.Printf("FTP CRITICAL: %v\n", err)
@@ -177,5 +172,6 @@ func (opt *Opt) Run(_ []string) (error, int) {
 }
 
 func main() {
-	os.Exit(flagrun.Go(&Opt{}, flagrun.Version(version)))
+	o := &Opt{}
+	os.Exit(flagrun.Go(o, flagrun.Version(version), flagrun.Validator(o.verifyOptions)))
 }
