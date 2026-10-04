@@ -1,5 +1,14 @@
 # Changelog
 
+## [v0.0.14](https://github.com/monitoring-forge/check_ftp2/compare/v0.0.13...v0.0.14) - 2026-10-04
+
+- Sync files with `monitoring-forge/github-common` by @monitoring-forge-files-sync-action[bot] in https://github.com/monitoring-forge/check_ftp2/pull/43
+- go: bump the dependencies group across 1 directory with 5 updates by @dependabot[bot] in https://github.com/monitoring-forge/check_ftp2/pull/49
+- ci: bump Songmu/tagpr from 1.20.1 to 1.20.3 in the dependencies group by @dependabot[bot] in https://github.com/monitoring-forge/check_ftp2/pull/51
+- ci: bump Songmu/tagpr from 1.20.3 to 1.21.0 in the dependencies group by @dependabot[bot] in https://github.com/monitoring-forge/check_ftp2/pull/53
+- Sync files with `monitoring-forge/github-common` by @monitoring-forge-files-sync-action[bot] in https://github.com/monitoring-forge/check_ftp2/pull/52
+- refactor and fix some lint issue by @kazeburo in https://github.com/monitoring-forge/check_ftp2/pull/54
+
 ## [v0.0.13](https://github.com/monitoring-forge/check_ftp2/compare/v0.0.12...v0.0.13) - 2026-08-21
 
 - add lint and fix some issue by @kazeburo in https://github.com/monitoring-forge/check_ftp2/pull/33
