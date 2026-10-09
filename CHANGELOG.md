@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.0.15](https://github.com/monitoring-forge/check_ftp2/compare/v0.0.14...v0.0.15) - 2026-10-09
+
+- Sync files with `monitoring-forge/github-common` by @monitoring-forge-files-sync-action[bot] in https://github.com/monitoring-forge/check_ftp2/pull/55
+
 ## [v0.0.14](https://github.com/monitoring-forge/check_ftp2/compare/v0.0.13...v0.0.14) - 2026-10-04
 
 - Sync files with `monitoring-forge/github-common` by @monitoring-forge-files-sync-action[bot] in https://github.com/monitoring-forge/check_ftp2/pull/43
