@@ -1,5 +1,15 @@
 # Changelog
 
+## [v0.0.15](https://github.com/monitoring-forge/check_ftp2/compare/v0.0.14...v0.0.15) - 2026-10-30
+
+- Sync files with `monitoring-forge/github-common` by @monitoring-forge-files-sync-action[bot] in https://github.com/monitoring-forge/check_ftp2/pull/55
+- ci: bump Songmu/tagpr from 1.21.0 to 1.21.2 in the tagpr group by @dependabot[bot] in https://github.com/monitoring-forge/check_ftp2/pull/58
+- go: bump golang.org/x/sys from 0.48.0 to 0.49.0 in the dependencies group by @dependabot[bot] in https://github.com/monitoring-forge/check_ftp2/pull/59
+- ci: bump Songmu/tagpr from 1.21.2 to 1.21.3 in the tagpr group by @dependabot[bot] in https://github.com/monitoring-forge/check_ftp2/pull/60
+- go: bump golang.org/x/text from 0.42.0 to 0.43.0 in the dependencies group by @dependabot[bot] in https://github.com/monitoring-forge/check_ftp2/pull/61
+- ci: bump the dependencies group with 2 updates by @dependabot[bot] in https://github.com/monitoring-forge/check_ftp2/pull/62
+- ci: bump Songmu/tagpr from 1.21.3 to 1.21.4 in the tagpr group by @dependabot[bot] in https://github.com/monitoring-forge/check_ftp2/pull/64
+
 ## [v0.0.14](https://github.com/monitoring-forge/check_ftp2/compare/v0.0.13...v0.0.14) - 2026-10-04
 
 - Sync files with `monitoring-forge/github-common` by @monitoring-forge-files-sync-action[bot] in https://github.com/monitoring-forge/check_ftp2/pull/43
