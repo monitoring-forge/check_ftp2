@@ -29,7 +29,7 @@ echo "=== Creating FTP user for TLS server ==="
 start_containers() {
   echo "=== Starting Docker Compose test environment ==="
   docker compose -f docker-compose.test.yml down -v 2>/dev/null || true
-  docker compose -f docker-compose.test.yml up -d
+  docker compose -f docker-compose.test.yml up -d --wait --wait-timeout 60
   # TLS サーバー起動後にユーザーを作成
   docker compose -f docker-compose.test.yml exec -T ftp-tls \
     sh -c 'pure-pw useradd test -u 1000 -g 1000 -d /home/test -m <<PW
