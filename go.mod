@@ -3,7 +3,7 @@ module github.com/monitoring-forge/check_ftp2
 go 1.26.0
 
 require (
-	github.com/fclairamb/ftpserverlib v0.32.6
+	github.com/fclairamb/ftpserverlib v0.33.0
 	github.com/jlaffaye/ftp v0.2.4
 	github.com/monitoring-forge/flagrun v0.0.11
 	github.com/spf13/afero v1.15.0
